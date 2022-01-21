@@ -12,7 +12,11 @@
 
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
-function returnFirstArgument(value) {}
+function returnFirstArgument(value) {
+  const result = value;
+  return result;
+}
+returnFirstArgument(15);
 
 /*
  Задание 2:
@@ -28,7 +32,22 @@ function returnFirstArgument(value) {}
  Пример:
    sumWithDefaults(10) вернет 110
  */
-function sumWithDefaults(a, b) {}
+function sumWithDefaults(a, ...b) {
+  let result;
+  if ([...b].length > 0) {
+    result = a + b[0];
+  } else {
+    result = a + 100;
+  }
+
+  return result;
+}
+
+const a = sumWithDefaults(5, 10);
+console.log(a);
+
+const b = sumWithDefaults(5);
+console.log(b);
 
 /*
  Задание 3:
@@ -38,7 +57,15 @@ function sumWithDefaults(a, b) {}
  Пример:
    returnFnResult(() => 'привет') вернет 'привет'
  */
-function returnFnResult(fn) {}
+function returnFnResult(fn) {
+  const result = fn();
+  return result;
+}
+
+returnFnResult(function () {
+  const value = 'hi';
+  return value;
+});
 
 /*
  Задание 4:
@@ -56,7 +83,20 @@ function returnFnResult(fn) {}
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter(number) {}
+function returnCounter(number) {
+  return function () {
+    if (number === undefined) {
+      number = 0;
+      return ++number;
+    } else {
+      return ++number;
+    }
+  };
+}
+
+const f = returnCounter(10);
+
+console.log(f());
 
 /*
  Задание 5 *:
@@ -67,7 +107,11 @@ function returnCounter(number) {}
  Пример:
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
-function returnArgumentsArray() {}
+function returnArgumentsArray(...argumentsArray) {
+  const result = [...argumentsArray];
+
+  return result;
+}
 
 /*
  Задание 6 *:
@@ -84,7 +128,24 @@ function returnArgumentsArray() {}
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(fn, ...args) {}
+function bindFunction(fn, ...args) {
+  const result = function () {
+    return fn(...args);
+  };
+  return result;
+}
+
+const newSum = bindFunction(
+  function (...a) {
+    return [...a].reduce(function (a, b) {
+      return a + b;
+    });
+  },
+  2,
+  3
+);
+
+console.log(newSum());
 
 export {
   returnFirstArgument,
