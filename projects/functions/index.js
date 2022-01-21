@@ -13,8 +13,7 @@
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
 function returnFirstArgument(value) {
-  const result = value;
-  return result;
+  return value;
 }
 returnFirstArgument(15);
 
@@ -32,22 +31,11 @@ returnFirstArgument(15);
  Пример:
    sumWithDefaults(10) вернет 110
  */
-function sumWithDefaults(a, ...b) {
-  let result;
-  if ([...b].length > 0) {
-    result = a + b[0];
-  } else {
-    result = a + 100;
-  }
-
-  return result;
+function sumWithDefaults(a, b = 100) {
+  return a + b;
 }
 
-const a = sumWithDefaults(5, 10);
-console.log(a);
-
-const b = sumWithDefaults(5);
-console.log(b);
+console.log(sumWithDefaults(5));
 
 /*
  Задание 3:
@@ -58,13 +46,11 @@ console.log(b);
    returnFnResult(() => 'привет') вернет 'привет'
  */
 function returnFnResult(fn) {
-  const result = fn();
-  return result;
+  return fn();
 }
 
 returnFnResult(function () {
-  const value = 'hi';
-  return value;
+  return 'hi';
 });
 
 /*
@@ -83,14 +69,9 @@ returnFnResult(function () {
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter(number) {
+function returnCounter(number = 0) {
   return function () {
-    if (number === undefined) {
-      number = 0;
-      return ++number;
-    } else {
-      return ++number;
-    }
+    return ++number;
   };
 }
 
@@ -108,9 +89,7 @@ console.log(f());
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
 function returnArgumentsArray(...argumentsArray) {
-  const result = [...argumentsArray];
-
-  return result;
+  return argumentsArray;
 }
 
 /*
@@ -129,15 +108,14 @@ function returnArgumentsArray(...argumentsArray) {
    console.log(newSum()) выведет 6
  */
 function bindFunction(fn, ...args) {
-  const result = function () {
+  return function () {
     return fn(...args);
   };
-  return result;
 }
 
 const newSum = bindFunction(
   function (...a) {
-    return [...a].reduce(function (a, b) {
+    return a.reduce(function (a, b) {
       return a + b;
     });
   },
