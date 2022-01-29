@@ -10,12 +10,9 @@
    forEach([1, 2, 3], (el) => console.log(el))
  */
 function forEach(array, fn) {
-  let i;
-  let result;
-  for (i = 0; i < array.length; i++) {
-    result = fn(array[i], i, array);
+  for (let i = 0; i < array.length; i++) {
+    fn(array[i], i, array);
   }
-  return result;
 }
 
 /*
@@ -46,19 +43,15 @@ function map(array, fn) {
    reduce([1, 2, 3], (all, current) => all + current) // 6
  */
 function reduce(array, fn, initial) {
-  let sum;
-  let i;
+  let i = 0;
   if (initial === undefined) {
-    sum = array[0];
+    initial = array[0];
     i = 1;
-  } else {
-    (sum = initial), (i = 0);
   }
-  for (i; i < array.length; i++) {
-    const result = fn(sum, array[i], i, array);
-    sum = result;
+  for (; i < array.length; i++) {
+    initial = fn(initial, array[i], i, array);
   }
-  return sum;
+  return initial;
 }
 
 /*
@@ -89,11 +82,12 @@ function upperProps(obj) {
    console.log(obj.foo); // 4
  */
 function createProxy(obj) {
-  const newObj = {};
-  for (const name in obj) {
-    newObj[name] = obj[name] * obj[name];
-  }
-  return newObj;
+  return new Proxy(obj, {
+    set(target, prop, val) {
+      target[prop] = val ** 2;
+      return true;
+    },
+  });
 }
 
 export { forEach, map, reduce, upperProps, createProxy };
