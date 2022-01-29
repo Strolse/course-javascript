@@ -19,20 +19,15 @@
 function isAllTrue(array, fn) {
   if (array.length === 0 || typeof array != 'object' || array.length === undefined) {
     throw new Error('empty array');
-  } else if (typeof fn != 'function') {
+  } else if (typeof fn !== 'function') {
     throw new Error('fn is not a function');
   } else {
-    let a = 0;
     for (let i = 0; i < array.length; i++) {
-      if (fn(array[i]) === true) {
-        a++;
+      if (fn(array[i]) === false) {
+        return false;
       }
     }
-    if (array.length === a) {
-      return true;
-    } else {
-      return false;
-    }
+    return true;
   }
 }
 
@@ -53,22 +48,17 @@ function isAllTrue(array, fn) {
    isSomeTrue([1, 2, 3, 4, 5], n => n > 20) // вернет false
  */
 function isSomeTrue(array, fn) {
-  if (array.length === 0 || typeof array != 'object' || array.length === undefined) {
+  if (array.length === 0 || typeof array !== 'object' || array.length === undefined) {
     throw new Error('empty array');
-  } else if (typeof fn != 'function') {
+  } else if (typeof fn !== 'function') {
     throw new Error('fn is not a function');
   } else {
-    let a = 0;
     for (let i = 0; i < array.length; i++) {
       if (fn(array[i]) === true) {
-        a++;
+        return true;
       }
     }
-    if (a > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return false;
   }
 }
 
@@ -84,7 +74,7 @@ function isSomeTrue(array, fn) {
    - fn не является функцией (с текстом "fn is not a function")
  */
 function returnBadArguments(fn, ...args) {
-  if (typeof fn != 'function') {
+  if (typeof fn !== 'function') {
     throw new Error('fn is not a function');
   } else {
     const newArray = [];
@@ -117,7 +107,7 @@ function returnBadArguments(fn, ...args) {
    - какой-либо из аргументов div является нулем (с текстом "division by 0")
  */
 function calculator(number = 0) {
-  if (typeof number != 'number') {
+  if (typeof number !== 'number') {
     throw new Error('number is not a number');
   } else {
     const obj = {
