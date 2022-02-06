@@ -50,11 +50,16 @@ function prepend(what, where) {
  */
 function findAllPSiblings(where) {
   const array = [];
-  for (const node of where.children) {
-    if (node.matches('p')) {
-      array.push(node.previousElementSibling);
-    }
+
+  const tagsP = where.getElementsByTagName('p');
+  for (const tag of tagsP) {
+    array.push(tag.previousElementSibling);
   }
+  // for (const node of where.children) {
+  //   if (node.matches('p')) {
+  //     array.push(node.previousElementSibling);
+  //   }
+  // }
 
   return array;
 }
@@ -160,7 +165,41 @@ function deleteTextNodesRecursive(where) {
      texts: 3
    }
  */
-function collectDOMStat(root) {}
+function collectDOMStat(root) {
+  const stats = {
+    tags: {},
+    classes: {},
+    texts: 0,
+  };
+
+  function scan(root) {
+    for (const node of root.childNodes) {
+      if (node.nodeType === 1) {
+        if (node.tagName in stats.tags) {
+          stats.tags[node.tagName]++;
+        } else {
+          stats.tags[node.tagName] = 1;
+        }
+
+        for (const className of node.classList) {
+          if (className in stats.classes) {
+            stats.classes[className]++;
+          } else {
+            stats.classes[className] = 1;
+          }
+        }
+
+        scan(node);
+      } else {
+        stats.texts++;
+      }
+    }
+  }
+
+  scan(root);
+
+  return stats;
+}
 
 /*
  Задание 8 *:
@@ -194,7 +233,23 @@ function collectDOMStat(root) {}
      nodes: [div]
    }
  */
-function observeChildNodes(where, fn) {}
+function observeChildNodes(where, fn) {
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.type === 'childList') {
+        if (mutation.addedNodes.length) {
+          fn({ type: 'insert', nodes: [...mutation.addedNodes] });
+        } else {
+          fn({ type: 'remove', nodes: [...mutation.removedNodes] });
+        }
+      }
+    }
+  });
+  observer.observe(where, {
+    childList: true,
+    subtree: true,
+  });
+}
 
 export {
   createDivWithText,
