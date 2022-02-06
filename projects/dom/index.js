@@ -238,7 +238,7 @@ function observeChildNodes(where, fn) {
     for (const mutation of mutations) {
       if (mutation.type === 'childList') {
         if (mutation.addedNodes.length) {
-          fn({ type: 'insert', nodes: [...mutation.addedNodes] });
+          fn({ type: 'insert', nodes: Array.from(mutation.addedNodes) });
         } else {
           fn({ type: 'remove', nodes: [...mutation.removedNodes] });
         }
