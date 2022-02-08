@@ -21,7 +21,9 @@ const homeworkContainer = document.querySelector('#app');
 
 document.addEventListener('mousemove', (e) => {});
 
-export function createDiv() {}
+export function createDiv() {
+  // const newDiv = document.createElement('div');
+}
 
 const addDivButton = homeworkContainer.querySelector('#addDiv');
 
