@@ -22,7 +22,9 @@ const homeworkContainer = document.querySelector('#app');
 document.addEventListener('mousemove', (e) => {});
 
 export function createDiv() {
-  // const newDiv = document.createElement('div');
+  const newDiv = document.createElement('div');
+  newDiv.classList.add('draggable-div');
+  // newDiv.style.backgroundColor = getRandomColor();
 }
 
 const addDivButton = homeworkContainer.querySelector('#addDiv');
