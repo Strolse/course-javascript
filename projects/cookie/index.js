@@ -47,6 +47,31 @@ const listTable = homeworkContainer.querySelector('#list-table tbody');
 
 filterNameInput.addEventListener('input', function () {});
 
-addButton.addEventListener('click', () => {});
+addButton.addEventListener('click', () => {
+  document.cookie = `${addNameInput.value}=${addValueInput.value}; expires=Fri, 31 Dec 2022 23:59:59 GMT`;
+  const cookies = document.cookie.split('; ').reduce((prev, current) => {
+    const [name, value] = current.split('=');
+    prev[name] = value;
+    return prev;
+  }, {});
+  console.log(cookies);
+
+  const newTr = document.createElement('tr');
+  listTable.appendChild(newTr);
+  const newThName = document.createElement('th');
+  const newThVal = document.createElement('th');
+  const newThDelete = document.createElement('th');
+  newTr.appendChild(newThName);
+  newThName.textContent = addNameInput.value;
+  newTr.appendChild(newThVal);
+  newThVal.textContent = cookies[addNameInput.value];
+  newTr.appendChild(newThDelete);
+
+  const deleteButton = document.createElement('button');
+  newThDelete.appendChild(deleteButton);
+
+  addNameInput.value = '';
+  addValueInput.value = '';
+});
 
 listTable.addEventListener('click', (e) => {});
