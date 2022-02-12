@@ -97,21 +97,6 @@ function addCookieInTable(obj) {
     newThDelete.appendChild(deleteButton);
   }
   listTable.appendChild(fragment);
-  // const newTr = document.createElement('tr');
-  // listTable.appendChild(newTr);
-  // const newThName = document.createElement('th');
-  // const newThVal = document.createElement('th');
-  // const newThDelete = document.createElement('th');
-  // newTr.appendChild(newThName);
-  // newThName.textContent = addNameInput.value;
-  // newThName.classList.add('cookieName')
-  // newTr.appendChild(newThVal);
-  // newThVal.textContent = cookies[addNameInput.value];
-  // newTr.appendChild(newThDelete);
-
-  // const deleteButton = document.createElement('button');
-  // deleteButton.classList.add('remove')
-  // newThDelete.appendChild(deleteButton);
 }
 
 listTable.addEventListener('click', (e) => {
