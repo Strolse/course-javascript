@@ -94,6 +94,7 @@ function addCookieInTable(obj) {
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('remove');
+    deleteButton.textContent = 'Удалить';
     newThDelete.appendChild(deleteButton);
   }
   listTable.appendChild(fragment);
