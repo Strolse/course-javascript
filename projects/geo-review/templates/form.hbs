@@ -1,0 +1,22 @@
+{{#if reviews}}
+<div data-role="reviews" data-coords={{coords}}>
+  {{#each reviews}}
+    {{> ./reviews.hbs}}
+  {{/each}}
+</div>
+{{/if}}
+<div class="balloon">
+  <h1 class="balloon__review">Отзыв:</h1>
+  <form data-role="review-form" >
+    <div class="form__elem">
+      <input data-role="review-name" type="text" placeholder="Укажите ваше имя">
+    </div>
+    <div class="form__elem">
+      <input data-role="review-place" type="text" placeholder="Укажите место">
+    </div>
+    <div class="form__text">
+      <textarea data-role="review-opinion" placeholder="Оставить отзыв"></textarea>
+    </div>
+    <button type="submit" data-role="review-btn" id="review__button">Добавить</button>
+  </form>
+</div>
