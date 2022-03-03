@@ -1,0 +1,82 @@
+<style>
+
+  .form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+  }
+
+  .form {
+    height: 497px;
+    width: 452px;
+    background-color: #17212B;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form__title {
+    font-size: 24px;
+    color: #fff;
+  }
+
+  .form__button{
+    background-color: #5188C1;
+    padding: 13px 40px;
+    border-radius: 5px;
+  }
+
+  .chat {
+    height: 100%;
+    width: 100%;
+    display: flex;
+  }
+
+  .chat__users {
+    width: 263px;
+    background-color: #17212B;
+  }
+
+  .chat__field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .chat__controls {
+    display: flex;
+  }
+
+  .chat__message {
+    flex: 1;
+  }
+</style>
+
+<div class="form-wrapper">
+  <form class="form">
+    <h1 class="form__title">Авторизация</h1>
+    <div>
+      <input type="text" placeholder="Введите свой ник">
+    </div>
+    <button class="form__button">Войти</button>
+  </form>
+</div>
+
+<div class="chat hidden">
+  <div class="chat__users">
+    <ul></ul>
+  </div>
+  <div class="chat__field">
+    <div></div>
+    <div class="chat__controls">
+      <input class="chat__message" type="text" placeholder="Введите сообщение...">
+      <button>Отправить</button>
+    </div>
+
+  </div>
+</div>
+
